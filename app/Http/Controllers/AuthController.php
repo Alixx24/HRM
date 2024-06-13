@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Stringable;
 
@@ -37,18 +38,29 @@ class AuthController extends Controller
         $user->remember_token = str()->random(50);
         $user->save();
         return redirect('/')->with('success', 'register succesfully!');
-
     }
 
     public function CheckEmail(Request $request)
     {
         $email = $request->input('email');
         $isExists = User::where('email', $email)->first();
-        if($isExists)
-        {
+        if ($isExists) {
             return response()->json(array("exists" => true));
-        }else{
+        } else {
             return response()->json(array("exists" => false));
+        }
+    }
+
+    public function login_post(Request $request)
+    {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password], true)) {
+            if (Auth::user()->is_role == '1') {
+                return redirect()->intended('admin/dashboard');
+            } else {
+                return redirect('/')->with('error', 'No HR Avalables...');
+            }
+        } else {
+            return redirect()->back()->with('error', 'Please enter the correct credential');
         }
     }
 }
