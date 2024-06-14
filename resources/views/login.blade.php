@@ -21,7 +21,7 @@
       <input type="checkbox" class="form-check-input" id="exampleCheck1">
       <label class="form-check-label" for="exampleCheck1">Check me out</label>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Sign in</button>
     <p>
         <a class="btn btn-danger" href="{{ url('forget-password') }}">Forget password</a>
         <a class="btn btn-success" href="{{ url('register') }}">Register</a>
