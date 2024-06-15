@@ -10,7 +10,7 @@
     @csrf
       <div class="form-group">
         <label for="exampleInputEmail1">name</label>
-        <input name="name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <input name="name" type="text" class="form-control" id="exampleInputEmail1" value="{{ old('name') }}" aria-describedby="emailHelp">
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
       </div>
       <span style="rcolor:red">{{ $errors->first('name') }}</span>
@@ -18,20 +18,20 @@
   
       <div class="form-group">
         <label for="exampleInputEmail1">last name</label>
-        <input name="last_name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <input name="last_name" type="text" class="form-control" id="exampleInputEmail1" value="{{ old('last_name') }}" aria-describedby="emailHelp">
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
       </div>
 
       <div class="form-group">
         <label for="exampleInputEmail1">mail</label>
-        <input name="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <input name="email" type="email" class="form-control" id="exampleInputEmail1" value="{{ old('email') }}" aria-describedby="emailHelp">
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
       </div>
       <span style="rcolor:red">{{ $errors->first('email') }}</span>
 
       <div class="form-group">
         <label for="exampleInputEmail1">phone</label>
-        <input name="phone_number" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <input name="phone_number" type="number" class="form-control" id="exampleInputEmail1" value="{{ old('phone') }}" aria-describedby="emailHelp">
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
       </div>
       <span style="rcolor:red">{{ $errors->first('phone') }}</span>
@@ -57,7 +57,7 @@
 
       <div class="form-group">
         <label for="exampleInputEmail1">salary</label>
-        <input name="salary" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <input name="salary" type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
       </div>
 
       <div class="form-group">

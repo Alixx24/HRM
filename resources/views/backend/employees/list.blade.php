@@ -6,4 +6,6 @@
 
 <h1>hi welcome employe</h1>
 <p>name: {{ auth()->user()->name }}</p>
+
+@include('_message')
 @endsection
