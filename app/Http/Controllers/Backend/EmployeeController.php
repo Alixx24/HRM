@@ -10,7 +10,8 @@ class EmployeeController extends Controller
 {
     public function index(Request $request)
     {
-        return view('backend.employees.list');
+        $data = User::getRecord();
+        return view('backend.employees.list', compact('data'));
     }
     public function add(Request $request)
     {
