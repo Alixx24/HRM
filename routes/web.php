@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\EmployeeController;
+use App\Http\Controllers\Backend\JobsController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -35,8 +36,14 @@ Route::group(['middleware' => 'admin'], function() {
     Route::get('admin/employees', [EmployeeController::class, 'index']);
     Route::get('admin/employees/add', [EmployeeController::class, 'add']);
     Route::post('admin/employees/add', [EmployeeController::class, 'add_post']);
+    Route::get('admin/employees/view/{id}', [EmployeeController::class, 'view']);
+    Route::get('admin/employees/edit/{id}', [EmployeeController::class, 'edit']);
+    Route::post('admin/employees/edit/{id}', [EmployeeController::class, 'update']);
+    Route::post('admin/employees/delete/{id}', [EmployeeController::class, 'delete']);
 
-    
+    //Job Start
+    Route::get('admin/jobs', [JobsController::class, 'index']);
+
 });
 
 Route::get('logout', [AuthController::class, 'logout']);
