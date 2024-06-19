@@ -48,8 +48,9 @@
 <div class="col-sm-10">
    <select class="form-control" name="job_id" id="">
     <option value="">select job</option>
-    <option value="1">web dec</option>
-    <option value="2">pdf dev</option>
+    @foreach ($fetchJobs as $valueJob)
+    <option value="{{ $valueJob->id }}">{{ $valueJob->job_title }}</option>
+    @endforeach
 
    </select>
 </div>        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>

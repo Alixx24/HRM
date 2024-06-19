@@ -65,6 +65,7 @@
                                             <th>first name</th>
                                             <th>last name</th>
                                             <th>email</th>
+                                            <th>Job ID</th>
                                             <th>Role</th>
                                         </tr>
                                     </thead>
@@ -77,6 +78,9 @@
                                             <td>{{ $value->name }}</td>
                                             <td>{{ $value->last_name }}</td>
                                             <td>{{ $value->email }}</td>
+
+                                            <td>{{ !empty($value->get_job_single->job_title) ? $value->get_job_single->job_title : '' }}</td>
+
                                             <td>{{ !empty($value->is_role) ? 'HR' : 'Employees' }}</td>
                                             <td>
                                                 <a href="{{ url('admin/employees/view/' .$value->id) }}" class="btn btn-info">view</a>

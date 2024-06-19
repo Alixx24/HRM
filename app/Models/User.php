@@ -72,6 +72,10 @@ class User extends Authenticatable
        $return = $return->orderBy('id', 'desc')
        ->paginate(2);
        return $return;
+    }
 
+    public function get_job_single()
+    {
+        return $this->belongsTo(JobModel::class, "job_id");
     }
 }

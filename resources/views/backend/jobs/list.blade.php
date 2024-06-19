@@ -21,6 +21,9 @@
                                     search employees
                                 </h3>
                             </div>
+                            <div>
+                                  <a class="btn btn-info" href="{{ url('admin/jobs/add') }}">Add Jobs</a>          
+                            </div>
                             <form action="" method="get">
                                 <div class="card-body">
                                     <div class="row">
@@ -60,22 +63,27 @@
                                     <thead>
                                         <tr>
                                             <th>#</th>
-                                            <th>first name</th>
-                                            <th>last name</th>
-                                            <th>email</th>
-                                            <th>Role</th>
+                                            <th>job title</th>
+                                            <th>min</th>
+                                            <th>max</th>
+                                            <th>created_at</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse($fetchData as $value)
+                                        @forelse($fetchJobs as $value)
                                             
                                         
                                         <tr>
                                             <td>{{ $value->id }}</td>
-                                            <td>{{ $value->name }}</td>
-                                            <td>{{ $value->last_name }}</td>
-                                            <td>{{ $value->email }}</td>
-                                            <td>{{ !empty($value->is_role) ? 'HR' : 'Employees' }}</td>
+                                            <td>{{ $value->job_title }}</td>
+                                            <td>{{ $value->min_salary }}</td>
+                                            <td>{{ $value->max_salary }}</td>
+
+
+                                            <td>{{ date('d-m-Y H:i A', strtotime($value->created_at)) }}</td>
+
+
+
                                             <td>
                                                 <a href="{{ url('admin/employees/view/' .$value->id) }}" class="btn btn-info">view</a>
                                                 <a href="{{ url('admin/employees/edit/' .$value->id) }}" class="btn btn-primary">edit</a>
@@ -91,7 +99,7 @@
                                     </tbody>
                                 </table>
                                 <div style="padding: 10px;float:right;">
-                                    {!! $fetchData->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
+                                    {!! $fetchJobs->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
                                 </div>
                             </div>
                         </div>
