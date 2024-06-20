@@ -6,6 +6,11 @@
 
 <h1>hi welcome employe</h1>
 <p>name: {{ auth()->user()->name }}</p>
+<form class="col-sm-6" action="{{ url('admin/jobs_export') }}" method="get">
+    <input type="hidden" name="start_date" value="{{ Request()->start_date }}">
+    <input type="hidden" name="end_date" value="{{ Request()->end_date }}">
+    <a class="btn btn-success" href="{{ url('admin/jobs_export?start_date='.Request::get('start_date').'&end_date='.Request::get('end_date')) }}">Excell Export</a>
+</form>
 
 @include('_message')
 
@@ -41,7 +46,15 @@
                                         <input type="text" name="max_salary" class="form-control" value="{{ Request()->max_salary }}" placeholder="first name">
                                         </div>
 
-                                       
+                                        <div class="form-group col-md-3">
+                                            <label for="">From Date</label>
+                                        <input type="date" name="start_date" class="form-control" value="{{ Request()->start_date }}">
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <label for="">To Date</label>
+                                        <input type="date" name="end_date" class="form-control" value="{{ Request()->end_date }}">
+                                        </div>
                                         
                                         <div class="form-group col-md-3">
                                             <button class="btn btn-primary" type="submit">search</button>
