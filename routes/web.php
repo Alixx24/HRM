@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\EmployeeController;
+use App\Http\Controllers\Backend\JobHistoryController;
 use App\Http\Controllers\Backend\JobsController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -46,6 +47,11 @@ Route::group(['middleware' => 'admin'], function() {
     Route::get('admin/jobs/add', [JobsController::class, 'add']);
     Route::post('admin/jobs/add', [JobsController::class, 'addPost']);
     Route::get('admin/jobs_export', [JobsController::class, 'jobs_export']);
+
+    //
+    Route::get('admin/job_history', [JobHistoryController::class, 'index']);
+    Route::get('admin/job_history/add', [JobHistoryController::class, 'add']);
+
 
 });
 
