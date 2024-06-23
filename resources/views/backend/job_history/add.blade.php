@@ -7,29 +7,25 @@
 <p>name: {{ auth()->user()->name }}</p>
 <form action="{{ url('admin/job_history/add') }}" method="post" accept="" enctype="">
     @csrf
-      <div class="form-group">
-        <label for="Job title">
-        *</label>
-        <div>
-          <select name="" class="form-control">
-            <option value="">Employy</option>
-          </select>
-        </div>
-      </div>
-      <span style="rcolor:red">{{ $errors->first('job_title') }}</span>
-  
-  
-      <div class="form-group">
-        <label for="exampleInputEmail1"> employee Id</label>
-<div><select name="vemployee_id" id="">
-  <option value="">Select employee Id
-    @foreach ($getEmployee as $valueEmployee)
-        
+     
+
+
+<div class="form-group">
+  <label for="exampleInputEmail1"> employee Id</label>
+<div><select name="employee_id" id="">
+<option value="employee_id">Job Id
+  @foreach ($getEmployee as $valueEmployee)  
   <option value="{{ $valueEmployee->id }}">{{ $valueEmployee->name }} {{ $valueEmployee->last_name }}</option>
-  @endforeach
+@endforeach
 </option>
 </select>
 </div>
+</div>
+<span style="rcolor:red">{{ $errors->first('job_id') }}</span>
+
+
+
+
       <div class="form-group">
         <label for="exampleInputEmail1"> Job Id</label>
 <div><select name="job_id" id="">
@@ -46,12 +42,11 @@
 
       <div class="form-group">
         <label for="exampleInputEmail1"> department Id</label>
-<div><select name="vemployee_id" id="">
+<div><select name="department_id" id="">
   <option value="">Select employee Id
-    @foreach ($getDepartment as $valueDepartment)
         
-  <option value="{{ $valueEmployee->id }}">{{ $valueEmployee->name }}</option>
-  @endforeach
+  <option value="1">test</option>
+  
 </option>
 </select>
 </div>
