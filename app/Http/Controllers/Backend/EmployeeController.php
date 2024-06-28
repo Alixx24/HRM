@@ -5,13 +5,21 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\JobModel;
 use App\Models\User;
+use App\Repository\EmployeeRepo;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
+    protected $employeeRepo;
+
+    public function __construct(EmployeeRepo $employeeRepo)
+    {
+        $this->employeeRepo = $employeeRepo;
+    }
+
     public function index(Request $request)
     {
-        $fetchData = User::getRecord();
+        $fetchData = $this->employeeRepo->getAll();
         return view('backend.employees.list', compact('fetchData'));
     }
     public function add(Request $request)
