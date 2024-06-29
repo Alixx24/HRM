@@ -10,4 +10,5 @@ interface IEmployeeRepo {
     function getAll(Request $request): LengthAwarePaginator;
     function add(): Collection;
     function addPost(array $data): void;
+    function findById($id);
 }

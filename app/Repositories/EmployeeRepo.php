@@ -60,4 +60,9 @@ class EmployeeRepo implements IEmployeeRepo
         $user->is_role = 0; // employees
         $user->save();
     }
+
+    public function findById($id)
+    {
+        return $this->model->find($id);
+    }
 }

@@ -50,7 +50,7 @@ class EmployeeController extends Controller
 
     public function view($id)
     {
-        $fetchData = User::find($id);
+        $fetchData = $this->employeeRepo->findById($id);
         return view('backend.employees.view', compact('fetchData'));
     }
 
