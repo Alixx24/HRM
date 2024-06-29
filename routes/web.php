@@ -36,7 +36,7 @@ Route::group(['middleware' => 'admin'], function() {
     Route::get('admin/dashboard', [DashboardController::class, 'dashboard']);
     Route::get('admin/employees', [EmployeeController::class, 'index']);
     Route::get('admin/employees/add', [EmployeeController::class, 'add']);
-    Route::post('admin/employees/add', [EmployeeController::class, 'add_post']);
+    Route::post('admin/employees/add', [EmployeeController::class, 'addPost']);
     Route::get('admin/employees/view/{id}', [EmployeeController::class, 'view']);
     Route::get('admin/employees/edit/{id}', [EmployeeController::class, 'edit']);
     Route::post('admin/employees/edit/{id}', [EmployeeController::class, 'update']);
