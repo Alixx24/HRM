@@ -39,7 +39,7 @@ class EmployeeRepo implements IEmployeeRepo
         return $query->orderBy('id', 'desc')->paginate(2);
     }
 
-    public function add():Collection
+    public function add(): Collection
     {
         return JobModel::all();
     }
@@ -64,5 +64,24 @@ class EmployeeRepo implements IEmployeeRepo
     public function findById($id)
     {
         return $this->model->find($id);
+    }
+
+    public function update($id, Request $request)
+    {
+        $user = new User();
+        $user->name = trim($request->name);
+        $user->last_name = trim($request->last_name);
+        $user->email = trim($request->email);
+        $user->phone_number = trim($request->phone_number);
+        $user->hire_date = trim($request->hire_date);
+        $user->job_id = trim($request->job_id);
+        $user->salary = trim($request->salary);
+        $user->commision_pct = trim($request->commision_pct);
+        $user->manager_id = trim($request->manager_id);
+        $user->department_id = trim($request->department_id);
+        $user->is_role = 0;
+        //employees
+        // dd($user);
+        $user->save();
     }
 }

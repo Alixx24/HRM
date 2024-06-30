@@ -11,4 +11,5 @@ interface IEmployeeRepo {
     function add(): Collection;
     function addPost(array $data): void;
     function findById($id);
+    function update($id, Request $request);
 }
