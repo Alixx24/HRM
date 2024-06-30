@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Repositories\EmployeeRepo;
-use App\Repositories\IEmployeeRepo;
+use App\Repositories\EmployeeRepoInterface;
+use App\Repositories\JobRepo;
+use App\Repositories\JobRepoInterface;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
@@ -13,7 +15,8 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(IEmployeeRepo::class, EmployeeRepo::class);
+        $this->app->bind(EmployeeRepoInterface::class, EmployeeRepo::class);
+        $this->app->bind(JobRepoInterface::class, JobRepo::class);
     }
 
     /**

@@ -8,7 +8,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
-class EmployeeRepo implements IEmployeeRepo
+class EmployeeRepo implements EmployeeRepoInterface
 {
     protected User $model;
 

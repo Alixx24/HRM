@@ -5,14 +5,14 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\JobModel;
 use App\Models\User;
-use App\Repositories\IEmployeeRepo;
+use App\Repositories\EmployeeRepoInterface;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
-    private IEmployeeRepo $employeeRepo;
+    private EmployeeRepoInterface $employeeRepo;
 
-    public function __construct(IEmployeeRepo $employeeRepo)
+    public function __construct(EmployeeRepoInterface $employeeRepo)
     {
         $this->employeeRepo = $employeeRepo;
     }
