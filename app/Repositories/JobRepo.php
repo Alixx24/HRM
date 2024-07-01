@@ -7,6 +7,7 @@ use App\Models\JobModel;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Collection;
 
 class JobRepo implements JobRepoInterface
 {
@@ -36,5 +37,11 @@ class JobRepo implements JobRepoInterface
         $user->min_salary = trim($data['min_salary']);
         $user->max_salary = trim($data['max_salary']);
         $user->save();
+    }
+
+    public function fetchJobs(): Collection
+    {
+        return JobModel::all();
+         
     }
 }

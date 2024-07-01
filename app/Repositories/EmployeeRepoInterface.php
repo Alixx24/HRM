@@ -12,4 +12,5 @@ interface EmployeeRepoInterface {
     function addPost(array $data): void;
     function findById($id);
     function update($id, Request $request);
+    function getByRole():Collection ;
 }

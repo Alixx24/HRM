@@ -6,10 +6,22 @@ use App\Http\Controllers\Controller;
 use App\Models\JobHistoryModel;
 use App\Models\JobModel;
 use App\Models\User;
+use App\Repositories\EmployeeRepo;
+use App\Repositories\EmployeeRepoInterface;
+use App\Repositories\JobHistoryRepoInterface;
+use App\Repositories\JobRepoInterface;
 use Illuminate\Http\Request;
 
 class JobHistoryController extends Controller
 {
+    
+    private JobRepoInterface $jobRepo;
+    private EmployeeRepoInterface $employeeRepo;
+    public function __construct(JobRepoInterface $jobRepo, EmployeeRepoInterface $employeeRepo)
+    {
+        $this->jobRepo = $jobRepo;
+        $this->employeeRepo = $employeeRepo;
+    }
     public function index(Request $request)
     {
         // $fetchData = User::getRecord();
@@ -17,10 +29,9 @@ class JobHistoryController extends Controller
     }
     public function add(Request $request)
     {
-        // $fetchData = User::getRecord();
-        $getJobs = JobModel::get();
-        $getEmployee = User::where('is_role', 0)->get();
-        return view('backend.job_history.add',compact('getJobs', 'getEmployee'));
+        $getJobs = $this->jobRepo->fetchJobs();
+        $getEmployee = $this->employeeRepo->getByRole();
+        return view('backend.job_history.add', compact('getJobs', 'getEmployee'));
     }
 
     public function addHistory(Request $request, JobHistoryModel $model)

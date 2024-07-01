@@ -84,4 +84,9 @@ class EmployeeRepo implements EmployeeRepoInterface
         // dd($user);
         $user->save();
     }
+
+    public function getByRole(): Collection
+    {
+        return User::where('is_role', 0)->get();
+    }
 }
