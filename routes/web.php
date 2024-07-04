@@ -32,7 +32,8 @@ Route::post('checkemail', [AuthController::class, 'CheckEmail']);
 Route::post('/login_post', [AuthController::class, 'login_post']);
 
 
-Route::group(['middleware' => 'admin'], function() {
+    Route::group(['middleware' => 'admin'], function() {
+
     Route::get('admin/dashboard', [DashboardController::class, 'dashboard']);
     Route::get('admin/employees', [EmployeeController::class, 'index']);
     Route::get('admin/employees/add', [EmployeeController::class, 'add']);
@@ -48,13 +49,13 @@ Route::group(['middleware' => 'admin'], function() {
     Route::post('admin/jobs/add', [JobsController::class, 'addPost']);
     Route::get('admin/jobs_export', [JobsController::class, 'jobs_export']);
 
-    //
+    //job history
     Route::get('admin/job_history', [JobHistoryController::class, 'index']);
     Route::get('admin/job_history/add', [JobHistoryController::class, 'add']);
-    Route::post('admin/job_history/add', [JobHistoryController::class, 'addHistory']);
+    Route::post('admin/job_history/addPost', [JobHistoryController::class, 'addHistory']);
 
+    });
 
-});
 
 Route::get('logout', [AuthController::class, 'logout']);
 

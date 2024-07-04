@@ -8,7 +8,8 @@ use Request;
 class JobHistoryModel extends Model
 {
     use HasFactory;
-    protected $fillable = 'jobs_history';
+    protected $table = 'job_history';
+
 
     // static public function getRecord($request)
     // {

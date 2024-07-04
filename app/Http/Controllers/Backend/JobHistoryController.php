@@ -8,8 +8,9 @@ use App\Models\JobModel;
 use App\Models\User;
 use App\Repositories\EmployeeRepo;
 use App\Repositories\EmployeeRepoInterface;
-use App\Repositories\JobHistoryRepoInterface;
+use App\Repositories\JobHisRepoInterface;
 use App\Repositories\JobRepoInterface;
+
 use Illuminate\Http\Request;
 
 class JobHistoryController extends Controller
@@ -17,10 +18,13 @@ class JobHistoryController extends Controller
     
     private JobRepoInterface $jobRepo;
     private EmployeeRepoInterface $employeeRepo;
-    public function __construct(JobRepoInterface $jobRepo, EmployeeRepoInterface $employeeRepo)
+    private JobHisRepoInterface $jobHistoryRepo;
+
+    public function __construct(JobRepoInterface $jobRepo, EmployeeRepoInterface $employeeRepo, JobHisRepoInterface $jobHistoryRepo)
     {
         $this->jobRepo = $jobRepo;
         $this->employeeRepo = $employeeRepo;
+        $this->jobHistoryRepo = $jobHistoryRepo;
     }
     public function index(Request $request)
     {
@@ -34,12 +38,12 @@ class JobHistoryController extends Controller
         return view('backend.job_history.add', compact('getJobs', 'getEmployee'));
     }
 
-    public function addHistory(Request $request, JobHistoryModel $model)
+    public function addHistory(Request $request)
     {
         // dd($request->all());
-        dd('ds');
+        
         // $fetchData = User::getRecord();
-        dd($request->all());
+     
 
         $jobHistoryy = request()->validate([
             'employee_id' => 'required',
@@ -48,15 +52,11 @@ class JobHistoryController extends Controller
             'job_id' => 'required',
             'department_id' => 'required'
         ]);
-        dd($request->all());
-        $jobHistoryy = new JobHistoryModel;
+   
+        $jobHistoryy = $this->jobHistoryRepo->addPost($jobHistoryy);
+      
 
-        $jobHistoryy->employee_id = trim($request->employee_id);
-        $jobHistoryy->start_date = trim($request->start_date);
-        $jobHistoryy->end_date = trim($request->end_date);
-        $jobHistoryy->job_id = trim($request->job_id);
-        $jobHistoryy->department_id = trim($request->department_id);
-        $jobHistoryy->save();
+     
 
         return redirect('admin/job_history')->with('success', 'job history success added');
     }

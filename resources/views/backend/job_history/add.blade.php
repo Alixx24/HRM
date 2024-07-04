@@ -5,7 +5,7 @@
 
 <h1>hi welcome Job Add!</h1>
 <p>name: {{ auth()->user()->name }}</p>
-<form action="{{ url('admin/job_history/add') }}" method="post" accept="" enctype="">
+<form action="{{ url('admin/job_history/addPost') }}" method="POST" accept="" enctype="">
     @csrf
      
 
