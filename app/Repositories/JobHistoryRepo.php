@@ -21,7 +21,6 @@ class JobHistoryRepo implements JobHisRepoInterface
 
     public function addPost(array $data): void
     {
-        
         $jobHistoryy = new JobHistoryModel();
     
         $jobHistoryy->employee_id = trim($data['employee_id']);
@@ -29,7 +28,7 @@ class JobHistoryRepo implements JobHisRepoInterface
         $jobHistoryy->end_date = trim($data['end_date']);
         $jobHistoryy->job_id = trim($data['job_id']);
         $jobHistoryy->department_id = trim($data['department_id']);
-        $jobHistoryy->create();
+        $jobHistoryy->save();
     }
 
 }

@@ -9,7 +9,7 @@ class JobHistoryModel extends Model
 {
     use HasFactory;
     protected $table = 'job_history';
-
+    protected $fillable = ['employee_id', 'start_date', 'end_date', 'job_id', 'department_id'];
 
     // static public function getRecord($request)
     // {

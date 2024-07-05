@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Repositories\AuthRepoInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -10,6 +11,14 @@ use Stringable;
 
 class AuthController extends Controller
 {
+    private AuthRepoInterface $authRepo;
+
+    public function __construct(AuthRepoInterface $authRepo)
+    {
+        $this->authRepo = $authRepo;
+    }
+
+    
     public function index(Request $request)
     {
         return view('login');
@@ -24,26 +33,19 @@ class AuthController extends Controller
     }
     public function register_post(Request $request)
     {
-        // dd($request->all());
         $user = request()->validate([
-            'name' => 'required',
+            'name' => 'required|string',
             'email' => 'required|unique:users',
             'password' => 'required|min:6',
             'confirm_password' => 'required_with:password|same:password|min:6'
         ]);
-        $user = new User();
-        $user->name = trim($request->name);
-        $user->email = trim($request->email);
-        $user->password = Hash::make($request->password);
-        $user->remember_token = str()->random(50);
-        $user->save();
+        $user = $this->authRepo->login($request);
         return redirect('/')->with('success', 'register succesfully!');
     }
 
     public function CheckEmail(Request $request)
     {
-        $email = $request->input('email');
-        $isExists = User::where('email', $email)->first();
+        $isExists = $this->authRepo->checkEmail($request);
         if ($isExists) {
             return response()->json(array("exists" => true));
         } else {
