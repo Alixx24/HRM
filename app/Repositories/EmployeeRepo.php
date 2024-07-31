@@ -46,19 +46,7 @@ class EmployeeRepo implements EmployeeRepoInterface
 
     public function addPost(array $data): void
     {
-        $user = new User();
-        $user->name = trim($data['name']);
-        $user->last_name = trim($data['last_name']);
-        $user->email = trim($data['email']);
-        $user->phone_number = trim($data['phone_number']);
-        $user->hire_date = trim($data['hire_date']);
-        $user->job_id = trim($data['job_id']);
-        $user->salary = trim($data['salary']);
-        $user->commision_pct = trim($data['commision_pct']);
-        $user->manager_id = trim($data['manager_id']);
-        $user->department_id = trim($data['department_id']);
-        $user->is_role = 0; // employees
-        $user->save();
+        $this->employeeStore(new User(), $data);
     }
 
     public function findById($id)
@@ -82,6 +70,23 @@ class EmployeeRepo implements EmployeeRepoInterface
         $user->is_role = 0;
         //employees
         // dd($user);
+        $user->save();
+    }
+
+    private function employeeStore(User $employee,array $data)
+    {
+        $user = new User();
+        $user->name = trim($data['name']);
+        $user->last_name = trim($data['last_name']);
+        $user->email = trim($data['email']);
+        $user->phone_number = trim($data['phone_number']);
+        $user->hire_date = trim($data['hire_date']);
+        $user->job_id = trim($data['job_id']);
+        $user->salary = trim($data['salary']);
+        $user->commision_pct = trim($data['commision_pct']);
+        $user->manager_id = trim($data['manager_id']);
+        $user->department_id = trim($data['department_id']);
+        $user->is_role = 0; // employees
         $user->save();
     }
 
