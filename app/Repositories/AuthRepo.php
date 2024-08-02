@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthRepo implements AuthRepoInterface
 {
-    public function login(Request $request)
+    public function register(Request $request)
     {
         $user = new User();
         $user->name = trim($request->name);

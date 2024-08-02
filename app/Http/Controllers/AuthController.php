@@ -39,7 +39,7 @@ class AuthController extends Controller
             'password' => 'required|min:6',
             'confirm_password' => 'required_with:password|same:password|min:6'
         ]);
-        $user = $this->authRepo->login($request);
+        $user = $this->authRepo->register($request);
         return redirect('/')->with('success', 'register succesfully!');
     }
 
